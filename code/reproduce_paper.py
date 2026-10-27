@@ -145,15 +145,52 @@ for s, w in [("bm25", "0.098 0.524 0.000 0.117 0.482 0.000"), ("biencoder", "0.0
     check(f"Table 5, {s}", " ".join(f3(x) for x in S[(s, "gpt-5.5")]), w)
 sc = score(RUNS["local"], GOLD["gpt-5.5"][0], {k: float(v) for k, v in best.items() if v > 0})
 check("Local question overall AP' with the shortcut", f3(sc[3]), "0.880")
-names = list(RUNS); flips = 0
-for v in range(6):
-    if v in (2, 5):
-        continue                                          # nil-silence is not a ranking view
+# ---------------------------------------------------------------- judge invariance over 15 change-detection systems
+def load_variant(name):
+    tmp = D("runs", "local_variants", f".{name}.jsonl")
+    with gzip.open(D("runs", "local_variants", f"{name}.jsonl.gz"), "rt", encoding="utf-8") as f, open(tmp, "w", encoding="utf-8") as g:
+        g.write(f.read())
+    out = E.load_run(tmp); os.remove(tmp)
+    return out
+
+
+def tau_b(x, y):
+    """Kendall's tau-b."""
+    con = dis = tx = ty = 0
+    for i, j in itertools.combinations(range(len(x)), 2):
+        a, b = x[i] - x[j], y[i] - y[j]
+        if a == 0 and b == 0:
+            continue
+        if a == 0:
+            tx += 1
+        elif b == 0:
+            ty += 1
+        elif a * b > 0:
+            con += 1
+        else:
+            dis += 1
+    return (con - dis) / ((con + dis + tx) * (con + dis + ty)) ** 0.5
+
+
+variants = json.load(open(D("runs", "local_variants", "settings.json")))["variants"]
+for name in variants:
+    RUNS["local:" + name] = load_variant(name)
+    for j in J:
+        S[("local:" + name, j)] = score(RUNS["local:" + name], *GOLD[j])
+names = list(RUNS)
+views = {0: "document overall", 1: "document has-answer", 3: "question overall", 4: "question has-answer"}
+taus, flips = [], 0
+for v in views:
+    base = [S[(x, "gpt-5.5")][v] for x in names]
     for j in ("DeepSeek", "Qwen"):
-        for x, y in itertools.combinations(names, 2):
-            gx, gy = round(S[(x, "gpt-5.5")][v], 3) - round(S[(y, "gpt-5.5")][v], 3), round(S[(x, j)][v], 3) - round(S[(y, j)][v], 3)
-            flips += gx * gy < 0
-check("ordering flips across 4 systems x 4 views x 2 judges (48 pairs)", flips, 0)
+        other = [S[(x, j)][v] for x in names]
+        taus.append(round(tau_b(base, other), 6))
+        flips += sum((base[a] - base[b]) * (other[a] - other[b]) < 0 for a, b in itertools.combinations(range(len(names)), 2))
+check("change-detection systems / pairs", (len(names), len(names) * (len(names) - 1) // 2), (15, 105))
+check("Kendall tau-b vs the LLM grader, 4 views x 2 judges", sorted(set(taus)), [1.0])
+check("pairs that change order, all views and judges", flips, 0)
+qd = [abs(S[(a, "gpt-5.5")][3] - S[(b, "gpt-5.5")][3]) for a, b in itertools.combinations(names, 2)]
+check("primary-metric pairs within 0.001 / exactly tied", (sum(0 < d < 0.001 for d in qd), sum(d == 0 for d in qd)), (6, 1))
 
 print(f"\n{n} checks, {len(fails)} failures")
 sys.exit(1 if fails else 0)

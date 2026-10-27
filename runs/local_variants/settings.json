@@ -1,0 +1,71 @@
+{
+ "base": "Local (final configuration; rankings identical to runs/local.jsonl.gz)",
+ "variants": {
+  "relthr005": {
+   "description": "relevance threshold 0.05",
+   "setting": "relevance.threshold",
+   "local_value": 0.1,
+   "variant_value": 0.05
+  },
+  "relthr020": {
+   "description": "relevance threshold 0.20",
+   "setting": "relevance.threshold",
+   "local_value": 0.1,
+   "variant_value": 0.2
+  },
+  "relthr030": {
+   "description": "relevance threshold 0.30",
+   "setting": "relevance.threshold",
+   "local_value": 0.1,
+   "variant_value": 0.3
+  },
+  "relthr050": {
+   "description": "relevance threshold 0.50",
+   "setting": "relevance.threshold",
+   "local_value": 0.1,
+   "variant_value": 0.5
+  },
+  "novthr030": {
+   "description": "novelty threshold 0.3",
+   "setting": "novelty.threshold",
+   "local_value": 0.5,
+   "variant_value": 0.3
+  },
+  "novthr070": {
+   "description": "novelty threshold 0.7",
+   "setting": "novelty.threshold",
+   "local_value": 0.5,
+   "variant_value": 0.7
+  },
+  "restat0": {
+   "description": "stay silent on restated information (restatement grade cap 0)",
+   "setting": "policy.restatement_gain_cap",
+   "local_value": 1.0,
+   "variant_value": 0.0
+  },
+  "nozrank": {
+   "description": "no z-score question ranking",
+   "setting": "policy.question_zscore_rank",
+   "local_value": true,
+   "variant_value": false
+  },
+  "qtop3": {
+   "description": "report only the top 3 questions per topic-day",
+   "setting": "policy.question_top_k",
+   "local_value": 0,
+   "variant_value": 3
+  },
+  "noens": {
+   "description": "no rank-aware ensemble in the relevance gate",
+   "setting": "relevance.ensemble_cos_rank",
+   "local_value": 3,
+   "variant_value": 0
+  },
+  "zgate": {
+   "description": "z-score gate on firing",
+   "setting": "policy.question_zscore_gate",
+   "local_value": false,
+   "variant_value": true
+  }
+ }
+}

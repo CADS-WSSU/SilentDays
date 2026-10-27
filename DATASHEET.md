@@ -37,8 +37,9 @@ Following *Datasheets for Datasets* (Gebru et al., 2021).
   grades, from all of the day's relevant documents.
 * **Audit.** Two further LLM judges (DeepSeek-V4.1-Flash, Qwen3.8-27B) graded every item with the same
   prompts: Krippendorff's α 0.816 (documents) and 0.667 (question-days) across the three judges. A re-run
-  of the grader on 2,090 items agrees exactly on 90.1% (quadratic-weighted κ 0.928). On the primary
-  metric, four change-detection systems are ranked in the same order under all three judges' labels.
+  of the grader on 2,090 items agrees exactly on 90.1% (quadratic-weighted κ 0.928). Fifteen
+  change-detection systems (13 of them sharing one pipeline) are ranked in the same order in every view
+  under all three judges' labels.
 * **Human validation.** See `human_study/`.
 
 ## Preprocessing

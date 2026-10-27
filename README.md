@@ -41,6 +41,7 @@ data/
 judges/                      grades from the LLM grader, the two further LLM judges, and the grader re-run
 prompts/                     exact document and question prompt templates; model settings
 runs/                        reference rankings: BM25, bi-encoder, Local, Local+LLM (gzipped run files)
+  local_variants/            11 variants of Local, each changing one setting (settings.json)
 human_study/                 annotation protocol and item lists
 code/
   evaluate.py, truncated.py  standalone scorer (Python standard library only)
@@ -70,7 +71,7 @@ Liu et al., SIGIR 2016) in three views: **overall** (all units, silence-aware; t
 **has-answer** (units with a change) and **nil-silence** (share of no-change units left silent).
 Question ranking, scored per topic-day against `question_qrels.jsonl`, is the primary metric.
 
-Reproduce the paper's numbers (about 30 seconds):
+Reproduce the paper's numbers (about a minute):
 
 ```bash
 python code/reproduce_paper.py
@@ -94,6 +95,15 @@ python code/reproduce_paper.py
 
 All labels are produced by an LLM. Treat them as a reproducible, audited reference, not as human
 ground truth.
+
+## Judge invariance
+
+`runs/` holds 15 change-detection systems: BM25 and a bi-encoder retriever (both report every question
+every day), Local (silence-aware, no LLM), Local+LLM, and 11 variants of Local that each change one
+setting (`runs/local_variants/settings.json`). Scored against the labels of each LLM judge, the 15
+change-detection systems come out in the same order in all four views (Kendall τ = 1.0; none of the 105
+pairs changes order). 13 of the 15 share Local's pipeline, so they are not independent.
+`code/reproduce_paper.py` recomputes this.
 
 ## Document text
 
