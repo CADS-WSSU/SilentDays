@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use SilentDays, please cite it as below, and also cite the TREC 2025 RAGTIME overview as the source of the underlying judgments and questions."
+title: "SilentDays: A Benchmark for Silence-Aware, Question-Level Change Detection in News Streams"
+type: dataset
+version: "1.0"
+date-released: "2026-11-02"
+license: CC-BY-4.0
+authors:
+  - family-names: Deb
+    given-names: Debzani
+    orcid: "https://orcid.org/0000-0002-3430-1130"
+    affiliation: "Department of Computer Science, Winston-Salem State University"
+    email: debd@wssu.edu
+references:
+  - type: article
+    title: "Overview of the TREC 2025 RAGTIME Track"
+    authors:
+      - family-names: Lawrie
+        given-names: Dawn
+      - family-names: MacAvaney
+        given-names: Sean
+      - family-names: Mayfield
+        given-names: James
+      - family-names: Soldaini
+        given-names: Luca
+      - family-names: Yang
+        given-names: Eugene
+      - family-names: Yates
+        given-names: Andrew
+    year: 2026
+    identifiers:
+      - type: other
+        value: "arXiv:2602.10024"

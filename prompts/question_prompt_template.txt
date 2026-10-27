@@ -1,0 +1,26 @@
+You grade how important the NEW information is for an analytic QUESTION ON A GIVEN DAY, for the analyst described in the TOPIC, given ALL information already reported for this question on earlier days (PRIOR KNOWLEDGE). You are grading the QUESTION's update today (not any single document), from that day's relevant documents.
+
+Assign the TREC Change Detection question grade — exactly one of 0, 1, 5, 10:
+- 0  : Not relevant that day.
+- 1  : Some relevant information that day, but nothing critical.
+- 5  : Some important information.
+- 10 : Information of critical importance today.
+
+Rule: information already reported for this question on earlier days (PRIOR KNOWLEDGE) is not new today. A day that only repeats it is at most grade 1.
+
+Return ONLY JSON: {"qgain": 0|1|5|10, "new_facts": ["..."], "reason": "<=20 words"}
+
+TOPIC: {topic title}
+{topic narrative}
+
+QUESTION: {question}
+
+PRIOR KNOWLEDGE:
+- {fact 1}
+- {fact 2}
+- ...
+
+TODAY'S RELEVANT DOCUMENTS (published {day}):
+[doc 1] {document text}
+
+[doc 2] ...

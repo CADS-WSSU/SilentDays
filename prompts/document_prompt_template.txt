@@ -1,0 +1,27 @@
+You grade how relevant and important a NEWS DOCUMENT is to an analytic QUESTION ON A GIVEN DAY, for the analyst described in the TOPIC, given ALL information already reported for this question on earlier days (PRIOR KNOWLEDGE).
+
+Grade by the SUBJECT of the question in the context of the TOPIC, NOT by whether the document states an exact fact.
+
+Assign the TREC Change Detection document grade — exactly one of 0, 1, 5, 10:
+- 0  : Not relevant that day.
+- 1  : On topic for the question, but not important.
+- 5  : Moderately important, needs noting but not critical.
+- 10 : Contains a vital update about this question today.
+
+Rule: information already reported for this question on earlier days (PRIOR KNOWLEDGE) is not new today. A document that only repeats it is at most grade 1.
+
+Also list the NEW facts this document adds beyond PRIOR KNOWLEDGE (concise; [] if none/off-topic).
+Return ONLY JSON: {"gain": 0|1|5|10, "new_facts": ["..."], "reason": "<=20 words"}
+
+TOPIC: {topic title}
+{topic narrative}
+
+QUESTION: {question}
+
+PRIOR KNOWLEDGE (facts already reported for this question):
+- {fact 1}
+- {fact 2}
+- ...
+
+DOCUMENT (published {day}):
+{document text}
