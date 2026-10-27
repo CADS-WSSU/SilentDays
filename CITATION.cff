@@ -4,6 +4,8 @@ title: "SilentDays: A Benchmark for Silence-Aware, Question-Level Change Detecti
 type: dataset
 version: "1.0"
 date-released: "2026-11-02"
+doi: "10.5281/zenodo.23697742"
+repository-code: "https://github.com/CADS-WSSU/SilentDays"
 license: CC-BY-4.0
 authors:
   - family-names: Deb

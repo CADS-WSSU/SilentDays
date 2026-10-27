@@ -2,6 +2,8 @@
 
 **A benchmark for silence-aware, question-level change detection in news streams.**
 
+DOI: [10.5281/zenodo.23697742](https://doi.org/10.5281/zenodo.23697742) · version 1.0
+
 Analysts who follow a developing story keep a list of open questions and want to know, each day,
 whether any of them has a new answer. A change-detection system must decide which questions changed
 today, rank the documents that support each change, and stay silent on the many days when nothing
@@ -123,7 +125,7 @@ Please also cite the RAGTIME overview as the source of these materials:
 > Dawn Lawrie, Sean MacAvaney, James Mayfield, Luca Soldaini, Eugene Yang, Andrew Yates.
 > *Overview of the TREC 2025 RAGTIME Track.* arXiv:2602.10024, 2026.
 
-See `CITATION.cff` for how to cite SilentDays.
+See `CITATION.cff` for how to cite SilentDays (DOI 10.5281/zenodo.23697742).
 
 ## Contact
 

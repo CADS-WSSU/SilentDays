@@ -55,6 +55,7 @@ Document text: whitespace collapsed, cut at 16,000 characters (24 of 1,040 docum
   documents outside the judged pool. English only, news domain, 2021–2024.
 
 ## Distribution and maintenance
+* **Access.** https://github.com/CADS-WSSU/SilentDays; archived at https://doi.org/10.5281/zenodo.23697742.
 * **License.** Data CC BY 4.0; code MIT. Cite the RAGTIME overview as the source of the underlying
   judgments and questions.
 * **Maintainer.** Debzani Deb (debd@wssu.edu). Corrections are released as new versions with a
