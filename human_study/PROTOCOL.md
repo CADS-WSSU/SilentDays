@@ -15,8 +15,8 @@ Same inputs, same grade definitions, same scale as the LLM grader; only the judg
 | Set C annotators | yes | yes | no | yes | all of that day's relevant documents, identical text | the question grader's exact list |
 
 Only the layout differs from the grader prompt: documents are shown before the already-reported list,
-the list is numbered and searchable, and a short plain-language guide is shown above the official grade
-definitions. Sets B and C show the grader's grade definitions verbatim.
+the list is numbered and searchable, and a short plain-language guide is shown. In Sets B and C the guide's steps quote the grader's grade
+definitions verbatim, and the grader's full definitions are available in the booklet.
 
 ## Sets (60 items each)
 | Set | Task | Sampling (on the released labels) | Compared with |
@@ -39,17 +39,19 @@ only repeats known information, and even if it does not fully answer the questio
 the article does not discuss the question's subject; an article on the same broad topic but a
 different aspect is 0. Do not judge importance or novelty.
 
-**Set B.** Grade the article for the question on the day it was published, given the facts already
-reported for this question on earlier days. (1) Is the article about the question's subject? No → 0.
-(2) Does it add anything that is not in the already-reported list? No, it only repeats → 1 (the same
-fact in different words counts as already reported). (3) If it adds something new, how important is
-that for the analyst? Minor or background → 1; moderately important, worth noting but not critical →
-5; a vital update → 10. The official definitions are the ones to follow; the steps are a guide.
+**Set B.** Grade what the article adds to the question on the day it was published, given what was
+already reported before that day. (1) Does the article say anything about the question's subject (not
+just the broad topic)? No → 0. (2) Does it add anything not already in the list (the same fact in
+different words is not new)? No → 1. (3) How important is the new part? Grades 1, 5 and 10 are given
+with the official definitions word for word. A short invented example shows each grade.
 
-**Set C.** Give one grade for the question on this day, based on all of that day's documents together.
-(1) Is any of today's documents about the question? No → 0. (2) Taken together, do they add anything
-not in the already-reported list? No → 1. (3) If yes, how important is the new information? Some,
-nothing critical → 1; important → 5; critical → 10. The official definitions are the ones to follow.
+**Set C.** Give one grade to the question on this day, from all of that day's documents together. The
+same three steps, with the official question-grade definitions word for word; with several documents
+the day is graded as a whole, one strong document is enough, and a fact repeated across documents
+counts once. A short invented example shows each grade.
+
+In both sets the full official definitions are also available in the booklet, and annotators who are
+unsure between two grades pick the closer one and add a comment.
 
 ## Procedure
 1. Sets are completed in the order C → A → B.
