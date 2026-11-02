@@ -45,7 +45,7 @@ runs/                        reference rankings: BM25, bi-encoder, Local, Local+
 human_study/                 annotation protocol and item lists
 code/
   evaluate.py, truncated.py  standalone scorer (Python standard library only)
-  reproduce_paper.py         recomputes the paper's numbers from these files
+  reproduce_paper.py         recomputes the paper's numbers from these files (except the human study)
   rebuild_pool.py            rebuilds the graded document text from your copy of the collection
 ```
 
@@ -71,7 +71,8 @@ Liu et al., SIGIR 2016) in three views: **overall** (all units, silence-aware; t
 **has-answer** (units with a change) and **nil-silence** (share of no-change units left silent).
 Question ranking, scored per topic-day against `question_qrels.jsonl`, is the primary metric.
 
-Reproduce the paper's numbers (about a minute):
+Reproduce the paper's numbers (about a minute; all except those of the human study, whose grades are
+not released):
 
 ```bash
 python code/reproduce_paper.py
